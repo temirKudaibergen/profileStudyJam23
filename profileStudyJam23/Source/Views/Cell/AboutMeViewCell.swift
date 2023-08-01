@@ -11,15 +11,16 @@ final class AboutMeViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    static let identifier = "ProfileCollectionViewCell"
+    static let identifier = "AboutMeViewCell"
     
     //    MARK: - UI
     
-    private let informationLable: UITextField = {
-        let textField = UITextField()
-        textField.isEnabled = false
-        textField.placeholder = "Write about yourself"
-        return textField
+    private let informationLable: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.isScrollEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
     }()
     
     // MARK: Initializers
@@ -42,8 +43,13 @@ final class AboutMeViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            informationLable.leadingAnchor.constraint(equalTo: leadingAnchor)
+            informationLable.leadingAnchor.constraint(equalTo: leadingAnchor),
+            informationLable.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 343)
         ])
+    }
+    
+    public func configureCell(information: String) {
+        informationLable.text = information
     }
     
 }

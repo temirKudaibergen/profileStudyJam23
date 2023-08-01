@@ -17,9 +17,12 @@ final class ProfileViewController: UIViewController {
     
     //    MARK: - Setup
     private func configureView() {
+        view.backgroundColor = .white
         title = "Профиль"
         navigationController?.navigationBar.prefersLargeTitles = false
-        let viewController = ProfileViewController()
+        let profileView = ProfileView()
+        profileView.backgroundColor = .white
+        view = profileView
     }
     
 }

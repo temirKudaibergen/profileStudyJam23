@@ -9,29 +9,38 @@ import UIKit
 
 final class ProfileView: UIView {
     
+    //    MARK: - Properties
+
+    let sections = MockData.shared.pageData
+    
     //    MARK: - UI
     
     private lazy var userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 150
-        imageView.layer.borderWidth = 5
+        imageView.layer.cornerRadius = 50
+        imageView.image = UIImage(named: "Man")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
+        label.font = .boldSystemFont(ofSize: 24)
+        label.numberOfLines = 2
         label.textAlignment = .center
+        label.text = "Кудайберген Темирлан Талгатович"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var userInformationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 13)
+        label.text = "Middle iOS-разработчик, опыт более 2-х лет"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -39,13 +48,16 @@ final class ProfileView: UIView {
     private lazy var locationImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "location")
+        imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var userCountryLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 13)
+        label.text = "Астана"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -64,6 +76,8 @@ final class ProfileView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .none
         collectionView.bounces = true
+        collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(MySkillViewCell.self,
                                 forCellWithReuseIdentifier: MySkillViewCell.identifier)
         collectionView.register(AboutMeViewCell.self,
@@ -72,12 +86,14 @@ final class ProfileView: UIView {
         return collectionView
     }()
     
+    
     //    MARK: Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarchy()
         setupLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -98,40 +114,32 @@ final class ProfileView: UIView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            // констрейнты для userImageView
-            userImageView.topAnchor.constraint(equalTo: topAnchor,
-                                               constant: 24),
-            userImageView.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                   constant: 127.5),
+            userImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,
+                                               constant: 42),
+            userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             userImageView.widthAnchor.constraint(equalToConstant: 120),
             userImageView.heightAnchor.constraint(equalToConstant: 120),
-            // констрейнты для userNameLabel
         ])
         NSLayoutConstraint.activate([
             userNameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor,
                                                constant: 16),
-            userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                   constant: 113),
-            userNameLabel.widthAnchor.constraint(equalToConstant: 149),
+            userNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            userNameLabel.widthAnchor.constraint(equalToConstant: 250),
             userNameLabel.heightAnchor.constraint(equalToConstant: 64)
         ])
-        // констрейнты для userInformationLabel
         NSLayoutConstraint.activate([
             userInformationLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor,
                                                       constant: 4),
             userInformationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            userInformationLabel.widthAnchor.constraint(equalToConstant: 273),
-            userInformationLabel.heightAnchor.constraint(equalToConstant: 20)
+            userInformationLabel.widthAnchor.constraint(equalToConstant: 400)
         ])
-        // констрейнты для userInformationLabel
         NSLayoutConstraint.activate([
             countryStackView.topAnchor.constraint(equalTo: userInformationLabel.bottomAnchor),
             countryStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                       constant: 150),
-            countryStackView.widthAnchor.constraint(equalToConstant: 75),
+            countryStackView.widthAnchor.constraint(equalToConstant: 80),
             countryStackView.heightAnchor.constraint(equalToConstant: 20)
         ])
-        // констрейнты для collectionView
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor,
                                                 constant: 40),

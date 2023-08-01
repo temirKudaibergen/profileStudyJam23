@@ -12,7 +12,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        view.backgroundColor = .white
+        
     }
     
     //    MARK: - Setup
@@ -20,7 +20,6 @@ final class ProfileViewController: UIViewController {
         title = "Профиль"
         navigationController?.navigationBar.prefersLargeTitles = false
         let viewController = ProfileViewController()
-
     }
     
 }

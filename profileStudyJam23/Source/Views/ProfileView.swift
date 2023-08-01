@@ -82,9 +82,14 @@ final class ProfileView: UIView {
                                 forCellWithReuseIdentifier: MySkillViewCell.identifier)
         collectionView.register(AboutMeViewCell.self,
                                 forCellWithReuseIdentifier: AboutMeViewCell.identifier)
+        collectionView.register(HeaderSupplementaryView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HeaderSupplementaryView.identifier)
+        collectionView.collectionViewLayout = createLayout()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    
     
     
     //    MARK: Initializer

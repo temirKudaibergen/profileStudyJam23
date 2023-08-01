@@ -44,7 +44,7 @@ final class AboutMeViewCell: UICollectionViewCell {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             informationLable.leadingAnchor.constraint(equalTo: leadingAnchor),
-            informationLable.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 343)
+            informationLable.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     

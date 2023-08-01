@@ -15,6 +15,7 @@ final class MySkillViewCell: UICollectionViewCell {
     static let identifier = "MySkillViewCell"
     
     //    MARK: - UI
+    
     private lazy var categoryCellView: UIView = {
         let button = UIView()
         button.backgroundColor = .lightGray

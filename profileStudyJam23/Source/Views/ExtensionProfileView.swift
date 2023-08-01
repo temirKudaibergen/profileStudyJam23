@@ -71,9 +71,8 @@ extension ProfileView: UICollectionViewDataSource, UICollectionViewDelegate {
             top: 12, leading: 24,
             bottom: 12, trailing: 24)
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalWidth(1))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalWidth(1))
         
         let layoutGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
@@ -86,11 +85,10 @@ extension ProfileView: UICollectionViewDataSource, UICollectionViewDelegate {
             bottom: 0, trailing: 0)
         
         let sectionLayout = NSCollectionLayoutSection(group: layoutGroup)
-        sectionLayout.interGroupSpacing = 10
         sectionLayout.contentInsets = NSDirectionalEdgeInsets(
-            top: 28, leading: 16,
-            bottom: 40.5, trailing: 16)
-        sectionLayout.orthogonalScrollingBehavior = .continuous
+            top: 0, leading: 0,
+            bottom: 0, trailing: 0)
+        sectionLayout.orthogonalScrollingBehavior = .groupPaging
         
         let layoutSectionHeaderSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.93),

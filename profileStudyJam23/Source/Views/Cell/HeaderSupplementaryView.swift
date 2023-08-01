@@ -17,7 +17,7 @@ class HeaderSupplementaryView: UICollectionReusableView {
     
      let headerLable: UILabel = {
         let lable = UILabel()
-         lable.textColor = .label
+         lable.textColor = .black
          lable.sizeToFit()
          lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = UIFont.systemFont(ofSize: 22, weight: .bold)
@@ -57,7 +57,7 @@ class HeaderSupplementaryView: UICollectionReusableView {
             headerLable.topAnchor.constraint(equalTo: self.topAnchor),
             headerLable.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             headerLable.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            headerLable.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            headerLable.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }
